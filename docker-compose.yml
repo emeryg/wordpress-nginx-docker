@@ -25,6 +25,17 @@ services:
       - MYSQL_ROOT_PASSWORD=password
     restart: always
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+        - "mysql:db"
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+    restart: always
+    ports:
+        - 8181:80
+
   wordpress:
     image: wordpress:php7.2-fpm
     container_name: wordpress
